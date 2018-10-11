@@ -1,0 +1,269 @@
+
+a.out:     file format elf64-littleaarch64
+
+
+Disassembly of section .plt:
+
+0000000000400620 <printf@plt-0x20>:
+  400620:	a9bf7bf0 	stp	x16, x30, [sp,#-16]!
+  400624:	90000090 	adrp	x16, 410000 <main+0xf7a8>
+  400628:	f947d211 	ldr	x17, [x16,#4000]
+  40062c:	913e8210 	add	x16, x16, #0xfa0
+  400630:	d61f0220 	br	x17
+  400634:	d503201f 	nop
+  400638:	d503201f 	nop
+  40063c:	d503201f 	nop
+
+0000000000400640 <printf@plt>:
+  400640:	90000090 	adrp	x16, 410000 <main+0xf7a8>
+  400644:	f947d611 	ldr	x17, [x16,#4008]
+  400648:	913ea210 	add	x16, x16, #0xfa8
+  40064c:	d61f0220 	br	x17
+
+0000000000400650 <puts@plt>:
+  400650:	90000090 	adrp	x16, 410000 <main+0xf7a8>
+  400654:	f947da11 	ldr	x17, [x16,#4016]
+  400658:	913ec210 	add	x16, x16, #0xfb0
+  40065c:	d61f0220 	br	x17
+
+0000000000400660 <malloc@plt>:
+  400660:	90000090 	adrp	x16, 410000 <main+0xf7a8>
+  400664:	f947de11 	ldr	x17, [x16,#4024]
+  400668:	913ee210 	add	x16, x16, #0xfb8
+  40066c:	d61f0220 	br	x17
+
+0000000000400670 <__libc_init@plt>:
+  400670:	90000090 	adrp	x16, 410000 <main+0xf7a8>
+  400674:	f947e211 	ldr	x17, [x16,#4032]
+  400678:	913f0210 	add	x16, x16, #0xfc0
+  40067c:	d61f0220 	br	x17
+
+0000000000400680 <free@plt>:
+  400680:	90000090 	adrp	x16, 410000 <main+0xf7a8>
+  400684:	f947e611 	ldr	x17, [x16,#4040]
+  400688:	913f2210 	add	x16, x16, #0xfc8
+  40068c:	d61f0220 	br	x17
+
+0000000000400690 <__cxa_atexit@plt>:
+  400690:	90000090 	adrp	x16, 410000 <main+0xf7a8>
+  400694:	f947ea11 	ldr	x17, [x16,#4048]
+  400698:	913f4210 	add	x16, x16, #0xfd0
+  40069c:	d61f0220 	br	x17
+
+Disassembly of section .text:
+
+00000000004006a0 <_start>:
+  4006a0:	8b3f63e0 	add	x0, sp, xzr
+  4006a4:	14000007 	b	4006c0 <do_arm64_start>
+
+00000000004006a8 <__atexit_handler_wrapper>:
+  4006a8:	a9bf7bfd 	stp	x29, x30, [sp,#-16]!
+  4006ac:	910003fd 	mov	x29, sp
+  4006b0:	b4000040 	cbz	x0, 4006b8 <__atexit_handler_wrapper+0x10>
+  4006b4:	d63f0000 	blr	x0
+  4006b8:	a8c17bfd 	ldp	x29, x30, [sp],#16
+  4006bc:	d65f03c0 	ret
+
+00000000004006c0 <do_arm64_start>:
+  4006c0:	90000082 	adrp	x2, 410000 <main+0xf7a8>
+  4006c4:	90000086 	adrp	x6, 410000 <main+0xf7a8>
+  4006c8:	90000085 	adrp	x5, 410000 <main+0xf7a8>
+  4006cc:	90000084 	adrp	x4, 410000 <main+0xf7a8>
+  4006d0:	a9bd7bfd 	stp	x29, x30, [sp,#-48]!
+  4006d4:	d2800001 	mov	x1, #0x0                   	// #0
+  4006d8:	910003fd 	mov	x29, sp
+  4006dc:	f947f4c6 	ldr	x6, [x6,#4072]
+  4006e0:	910063a3 	add	x3, x29, #0x18
+  4006e4:	f947fca5 	ldr	x5, [x5,#4088]
+  4006e8:	f947f884 	ldr	x4, [x4,#4080]
+  4006ec:	f947f042 	ldr	x2, [x2,#4064]
+  4006f0:	f9000fa6 	str	x6, [x29,#24]
+  4006f4:	f90013a5 	str	x5, [x29,#32]
+  4006f8:	f90017a4 	str	x4, [x29,#40]
+  4006fc:	97ffffdd 	bl	400670 <__libc_init@plt>
+
+0000000000400700 <atexit>:
+  400700:	aa0003e1 	mov	x1, x0
+  400704:	b0000082 	adrp	x2, 411000 <__dso_handle>
+  400708:	90000000 	adrp	x0, 400000 <note_android_ident-0x218>
+  40070c:	91000042 	add	x2, x2, #0x0
+  400710:	911aa000 	add	x0, x0, #0x6a8
+  400714:	17ffffdf 	b	400690 <__cxa_atexit@plt>
+
+0000000000400718 <testb>:
+#include <stdio.h>
+#include <stdlib.h>
+int testb(int a) {
+  400718:	d10083ff 	sub	sp, sp, #0x20
+  40071c:	b9000fe0 	str	w0, [sp,#12]
+    int x = a -1;
+  400720:	b9400fe0 	ldr	w0, [sp,#12]
+  400724:	51000400 	sub	w0, w0, #0x1
+  400728:	b9001fe0 	str	w0, [sp,#28]
+    return x;
+  40072c:	b9401fe0 	ldr	w0, [sp,#28]
+}
+  400730:	910083ff 	add	sp, sp, #0x20
+  400734:	d65f03c0 	ret
+
+0000000000400738 <testa>:
+
+int testa(int a,int b, int c1,int c2,int c3,int c4,int c5,int c6,int c7, int c8,int c9) {
+  400738:	a9bb7bfd 	stp	x29, x30, [sp,#-80]!
+  40073c:	910003fd 	mov	x29, sp
+  400740:	b9002fa0 	str	w0, [x29,#44]
+  400744:	b9002ba1 	str	w1, [x29,#40]
+  400748:	b90027a2 	str	w2, [x29,#36]
+  40074c:	b90023a3 	str	w3, [x29,#32]
+  400750:	b9001fa4 	str	w4, [x29,#28]
+  400754:	b9001ba5 	str	w5, [x29,#24]
+  400758:	b90017a6 	str	w6, [x29,#20]
+  40075c:	b90013a7 	str	w7, [x29,#16]
+//int testa(int a,int b) {
+    int x = a + b;
+  400760:	b9402fa1 	ldr	w1, [x29,#44]
+  400764:	b9402ba0 	ldr	w0, [x29,#40]
+  400768:	0b000020 	add	w0, w1, w0
+  40076c:	b9004fa0 	str	w0, [x29,#76]
+
+    int k[5]={1,2,3,4,5};
+  400770:	9100c3a0 	add	x0, x29, #0x30
+  400774:	52800021 	mov	w1, #0x1                   	// #1
+  400778:	b9000001 	str	w1, [x0]
+  40077c:	9100c3a0 	add	x0, x29, #0x30
+  400780:	52800041 	mov	w1, #0x2                   	// #2
+  400784:	b9000401 	str	w1, [x0,#4]
+  400788:	9100c3a0 	add	x0, x29, #0x30
+  40078c:	52800061 	mov	w1, #0x3                   	// #3
+  400790:	b9000801 	str	w1, [x0,#8]
+  400794:	9100c3a0 	add	x0, x29, #0x30
+  400798:	52800081 	mov	w1, #0x4                   	// #4
+  40079c:	b9000c01 	str	w1, [x0,#12]
+  4007a0:	9100c3a0 	add	x0, x29, #0x30
+  4007a4:	528000a1 	mov	w1, #0x5                   	// #5
+  4007a8:	b9001001 	str	w1, [x0,#16]
+    int y = testb(x);
+  4007ac:	b9404fa0 	ldr	w0, [x29,#76]
+  4007b0:	97ffffda 	bl	400718 <testb>
+  4007b4:	b9004ba0 	str	w0, [x29,#72]
+    return y;
+  4007b8:	b9404ba0 	ldr	w0, [x29,#72]
+}
+  4007bc:	a8c57bfd 	ldp	x29, x30, [sp],#80
+  4007c0:	d65f03c0 	ret
+
+00000000004007c4 <testd>:
+
+char *testd(int *p) {
+  4007c4:	a9bd7bfd 	stp	x29, x30, [sp,#-48]!
+  4007c8:	910003fd 	mov	x29, sp
+  4007cc:	f9000fa0 	str	x0, [x29,#24]
+    int a;
+    a = 77;
+  4007d0:	528009a0 	mov	w0, #0x4d                  	// #77
+  4007d4:	b9002fa0 	str	w0, [x29,#44]
+    *p = a;
+  4007d8:	f9400fa0 	ldr	x0, [x29,#24]
+  4007dc:	b9402fa1 	ldr	w1, [x29,#44]
+  4007e0:	b9000001 	str	w1, [x0]
+    char *x = (char *)malloc(sizeof(char));
+  4007e4:	d2800020 	mov	x0, #0x1                   	// #1
+  4007e8:	97ffff9e 	bl	400660 <malloc@plt>
+  4007ec:	f90013a0 	str	x0, [x29,#32]
+    *x = a - 2;
+  4007f0:	b9402fa0 	ldr	w0, [x29,#44]
+  4007f4:	53001c00 	uxtb	w0, w0
+  4007f8:	51000800 	sub	w0, w0, #0x2
+  4007fc:	53001c01 	uxtb	w1, w0
+  400800:	f94013a0 	ldr	x0, [x29,#32]
+  400804:	39000001 	strb	w1, [x0]
+    return x;
+  400808:	f94013a0 	ldr	x0, [x29,#32]
+}
+  40080c:	a8c37bfd 	ldp	x29, x30, [sp],#48
+  400810:	d65f03c0 	ret
+
+0000000000400814 <testc>:
+
+int testc(int a[]) {
+  400814:	a9bd7bfd 	stp	x29, x30, [sp,#-48]!
+  400818:	910003fd 	mov	x29, sp
+  40081c:	f9000fa0 	str	x0, [x29,#24]
+    a[0] = 1;
+  400820:	f9400fa0 	ldr	x0, [x29,#24]
+  400824:	52800021 	mov	w1, #0x1                   	// #1
+  400828:	b9000001 	str	w1, [x0]
+    a[1] = 2;
+  40082c:	f9400fa0 	ldr	x0, [x29,#24]
+  400830:	91001000 	add	x0, x0, #0x4
+  400834:	52800041 	mov	w1, #0x2                   	// #2
+  400838:	b9000001 	str	w1, [x0]
+    char *p = testd(a);
+  40083c:	f9400fa0 	ldr	x0, [x29,#24]
+  400840:	97ffffe1 	bl	4007c4 <testd>
+  400844:	f90017a0 	str	x0, [x29,#40]
+    free(p);
+  400848:	f94017a0 	ldr	x0, [x29,#40]
+  40084c:	97ffff8d 	bl	400680 <free@plt>
+}
+  400850:	a8c37bfd 	ldp	x29, x30, [sp],#48
+  400854:	d65f03c0 	ret
+
+0000000000400858 <main>:
+
+int main() {
+  400858:	d10143ff 	sub	sp, sp, #0x50
+  40085c:	a9027bfd 	stp	x29, x30, [sp,#32]
+  400860:	910083fd 	add	x29, sp, #0x20
+    printf("aapcs64\n");
+  400864:	90000000 	adrp	x0, 400000 <note_android_ident-0x218>
+  400868:	91246000 	add	x0, x0, #0x918
+  40086c:	97ffff79 	bl	400650 <puts@plt>
+    int a = testa(1,3,1,2,3,4,5,6,7,8,9);
+  400870:	528000e0 	mov	w0, #0x7                   	// #7
+  400874:	b90003e0 	str	w0, [sp]
+  400878:	52800100 	mov	w0, #0x8                   	// #8
+  40087c:	b9000be0 	str	w0, [sp,#8]
+  400880:	52800120 	mov	w0, #0x9                   	// #9
+  400884:	b90013e0 	str	w0, [sp,#16]
+  400888:	52800020 	mov	w0, #0x1                   	// #1
+  40088c:	52800061 	mov	w1, #0x3                   	// #3
+  400890:	52800022 	mov	w2, #0x1                   	// #1
+  400894:	52800043 	mov	w3, #0x2                   	// #2
+  400898:	52800064 	mov	w4, #0x3                   	// #3
+  40089c:	52800085 	mov	w5, #0x4                   	// #4
+  4008a0:	528000a6 	mov	w6, #0x5                   	// #5
+  4008a4:	528000c7 	mov	w7, #0x6                   	// #6
+  4008a8:	97ffffa4 	bl	400738 <testa>
+  4008ac:	b9002fa0 	str	w0, [x29,#44]
+    printf("a = %d\n",a);
+  4008b0:	90000000 	adrp	x0, 400000 <note_android_ident-0x218>
+  4008b4:	91248000 	add	x0, x0, #0x920
+  4008b8:	b9402fa1 	ldr	w1, [x29,#44]
+  4008bc:	97ffff61 	bl	400640 <printf@plt>
+    int k[5]={1,2,3,4,5};
+  4008c0:	910063a0 	add	x0, x29, #0x18
+  4008c4:	52800021 	mov	w1, #0x1                   	// #1
+  4008c8:	b9000001 	str	w1, [x0]
+  4008cc:	910063a0 	add	x0, x29, #0x18
+  4008d0:	52800041 	mov	w1, #0x2                   	// #2
+  4008d4:	b9000401 	str	w1, [x0,#4]
+  4008d8:	910063a0 	add	x0, x29, #0x18
+  4008dc:	52800061 	mov	w1, #0x3                   	// #3
+  4008e0:	b9000801 	str	w1, [x0,#8]
+  4008e4:	910063a0 	add	x0, x29, #0x18
+  4008e8:	52800081 	mov	w1, #0x4                   	// #4
+  4008ec:	b9000c01 	str	w1, [x0,#12]
+  4008f0:	910063a0 	add	x0, x29, #0x18
+  4008f4:	528000a1 	mov	w1, #0x5                   	// #5
+  4008f8:	b9001001 	str	w1, [x0,#16]
+    testc(k);
+  4008fc:	910063a0 	add	x0, x29, #0x18
+  400900:	97ffffc5 	bl	400814 <testc>
+    return 0;
+  400904:	52800000 	mov	w0, #0x0                   	// #0
+}
+  400908:	d10083bf 	sub	sp, x29, #0x20
+  40090c:	a9427bfd 	ldp	x29, x30, [sp,#32]
+  400910:	910143ff 	add	sp, sp, #0x50
+  400914:	d65f03c0 	ret
