@@ -23,6 +23,8 @@ if [[ ! -f "$tool_path/aarch64-linux-android-objdump" ]]; then
     exit 1
 fi
 
-$tool_path/aarch64-linux-android-gcc --sysroot=$sys_root test_arm64.c -g
+# echo "$tool_path/aarch64-linux-android-gcc --sysroot=$sys_root test_arm64.c"
+$tool_path/aarch64-linux-android-gcc --sysroot=$sys_root test_arm64.c -g -fstack-protector-all
+#$tool_path/aarch64-linux-android-gcc --sysroot=$sys_root test_arm64.c -g
 $tool_path/aarch64-linux-android-objdump -dS a.out
 
